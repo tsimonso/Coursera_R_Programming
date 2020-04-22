@@ -17,7 +17,7 @@ print(R.version.string)
 ```
 
 ```{r}
-source("R_prog_w2_1.R")
+source("pollutantmean.R")
 pollutantMean("specdata","sulfate",1:10)
 ```
 
