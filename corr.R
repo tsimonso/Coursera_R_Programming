@@ -1,5 +1,5 @@
 find.ID.aboveThr<-function(directory,threashold){
-        df.nrComplete<-complete(directory) #table of the stations and the corresponding number of complete observations.
+        capture.output(df.nrComplete<-complete(directory)) #table of the stations and the corresponding number of complete observations.
         aboveThr<-df.nrComplete$nobs>threashold #logical vector signalling the stations with a nr of complete obs above threashold
         df.mostComplete<-df.nrComplete[aboveThr,] #above threashold subset
         ID.aboveThr<-df.mostComplete$id #vector with the IDs of the selected stations
