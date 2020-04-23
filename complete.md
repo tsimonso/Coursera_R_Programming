@@ -1,8 +1,7 @@
 R programming, week 2 assignment.
 ---------------------------------
 
-Part 2 : Reporting the number of completely observed cases in each data file.
------------------------------------------------------------------------------
+### Part 2 : Reporting the number of completely observed cases in each data file.
 
     print(R.version.string)
 
