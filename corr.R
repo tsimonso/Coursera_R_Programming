@@ -1,21 +1,30 @@
 find.ID.aboveThr<-function(directory,threashold){
-        complete(directory)
-        nrComplete_aboveThr<-nrComplete_Stations[nrComplete_Stations>threashold]
-        ID.aboveThr<-nrComplete_aboveThr$obs
+        capture.output(df.nrComplete<-complete(directory)) #table of the stations and the corresponding number of complete observations.
+        aboveThr<-df.nrComplete$nobs>threashold #logical vector signalling the stations with a nr of complete obs above threashold
+        df.mostComplete<-df.nrComplete[aboveThr,] #above threashold subset
+        ID.aboveThr<-df.mostComplete$id #vector with the IDs of the selected stations
+        ID.aboveThr
 }
 
+
 corr<-function(directory,threashold=0){
-        
-        oldDir<-getwd() # The working directory must be the directory containing the data folder
-        newDir<-paste(oldDir,"/",directory,sep="")
-        setwd(newDir) # We set the working directory to the data folder itself
-        
-        fileNames<-find.ID.aboveThr(directory,threashold)
-        corrVector<-rep(NA,length(ID.aboveThr))
-        for(i in seq_along(ID.aboveThr)){
-                data<-read.csv(fileNames[i])
-                corrVector[i]<-cor(data$sulfate,data$nitrate)
+        fileNrs<-find.ID.aboveThr(directory,threashold)
+        if(length(fileNrs)==0){
+                corrVector<-c()
         }
-        setwd(oldDir)
-        corrVector
+        else{
+                fileNames<-filenames(fileNrs)
+                corrVector<-rep(NA,length(fileNames))        
+                oldDir<-getwd() # The working directory must be the directory containing the data folder
+                newDir<-paste(oldDir,"/",directory,sep="")
+                setwd(newDir) # We set the working directory to the data folder itself
+                for(i in seq_along(fileNames)){
+                        data<-read.csv(fileNames[i])
+                        comp<-complete.cases(data) #logical vector signalling the complete rows
+                        compdf<-data[comp,] #complete rows subset
+                        corrVector[i]<-cor(compdf$sulfate,compdf$nitrate)
+                }
+                setwd(oldDir)
+                corrVector
+        }
 }
