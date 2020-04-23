@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R programming, week 2 assignment
+## R programming, week 2 assignment.
 ### Part 1 : Mean of a pollutant (sulfate or nitrate) across a specified list of monitors.
 
 ```{r}
