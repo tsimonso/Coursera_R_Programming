@@ -22,9 +22,9 @@ filenames<-function(id){
                          fnList<-list(fnList,filename)
                  }
          }
-                 # The list is turned into a vector
-                 fnVector<-unlist(fnList) 
-         }
+         # The list is turned into a vector
+         fnVector<-unlist(fnList) 
+}
 
  # A loop open files one by one and fills a matrix with the data on complete cases per station
  complete<-function(directory,id=1:332){
