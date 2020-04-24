@@ -1,6 +1,7 @@
 
 # The "filenames" function creates a vector containing the names of files of all the stations requested
 filenames<-function(id){
+        fnVector<-rep(NA,length(id))
         for(i in seq_along(id)) {
                 
                 # The file name has three digits.
@@ -14,17 +15,9 @@ filenames<-function(id){
                         filename<-paste(id[i],".csv",sep="")
                 }
                 
-                
                 # The loop enters the file names in a list
-                if(i==1){ # for the first file of the list
-                        fnList<-list(filename)
-                }
-                else{ # for the next files...
-                        fnList<-list(fnList,filename)
-                }
+                fnVector[i]<-filename
         }
-        # The list is turned into a vector
-        fnVector<-unlist(fnList) 
 }
 
 # The "masterdatafile" function creates a data frame containing the data from all the stations requested
@@ -48,8 +41,8 @@ masterdatafile<-function(directory,id) {
         pollution
 }
 
-# The "pollutantMean" function calculates the mean value of the pollutants using the data from all the stations requested
-pollutantMean<-function(directory,pollutant,id=1:332){
+# The "pollutantmean" function calculates the mean value of the pollutants using the data from all the stations requested
+pollutantmean<-function(directory,pollutant,id=1:332){
         data<-masterdatafile(directory,id) # We call the masterdatafile function that we have just created
         if(pollutant=="nitrate"){
                 mean(data$nitrate,na.rm=TRUE)
