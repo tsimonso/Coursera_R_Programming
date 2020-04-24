@@ -7,15 +7,15 @@ R programming, week 2 assignment.
 
     ## [1] "R version 3.6.3 (2020-02-29)"
 
-    source("pollutantmean_TS.R")
-    pollutantMean("specdata","sulfate",1:10)
+    source("pollutantmean.R")
+    pollutantmean("specdata","sulfate",1:10)
 
     ## [1] 4.064128
 
-    pollutantMean("specdata","nitrate",70:72)
+    pollutantmean("specdata","nitrate",70:72)
 
     ## [1] 1.706047
 
-    pollutantMean("specdata","nitrate",23)
+    pollutantmean("specdata","nitrate",23)
 
     ## [1] 1.280833
