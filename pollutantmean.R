@@ -18,6 +18,7 @@ filenames<-function(id){
                 # The loop enters the file names in a list
                 fnVector[i]<-filename
         }
+        fnVector
 }
 
 # The "masterdatafile" function creates a data frame containing the data from all the stations requested
